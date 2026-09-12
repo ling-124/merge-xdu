@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fdfbfb">
+  <meta id="pageDescription" name="description" content="高校校徽合成小游戏">
+  <meta property="og:title" content="合成西电">
+  <meta property="og:description" content="拖动校徽，按211排名步步升级，最终合成西安电子科技大学！">
+  <meta property="og:type" content="website">
+  <!-- 部署后把 og:image 改为你的绝对链接（如 https://你的域名/assets/badges/xdu.svg），微信分享卡片就会显示西电校徽 -->
+  <meta property="og:image" content="assets/badges/xdu.svg">
+  <title>合成西电</title>
+  <link rel="icon" href="assets/badges/xdu.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <h1 id="gameTitle">合成西电</h1>
+        <p>左右拖动·松手落下</p>
+      </div>
+
+      <div class="metric metric-score">
+        <span>得分</span>
+        <strong id="score">0</strong>
+      </div>
+
+      <div class="metric">
+        <span>最高</span>
+        <strong id="bestScore">0</strong>
+      </div>
+
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          id="soundButton"
+          type="button"
+          tabindex="-1"
+          aria-label="关闭声音"
+          aria-pressed="true"
+        >
+          <span class="sound-icon" id="soundIcon" aria-hidden="true"></span>
+        </button>
+        <button class="small-button restart-button" id="restartButton" type="button" tabindex="-1" disabled>重开</button>
+      </div>
+    </header>
+
+    <div class="board">
+      <canvas
+        id="gameCanvas"
+        width="640"
+        height="992"
+      ></canvas>
+
+      <div
+        class="overlay"
+        id="gameOverOverlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="gameOverTitle"
+        aria-describedby="gameOverMessage"
+        hidden
+      >
+        <div class="overlay-card confirm-card">
+          <h2 id="gameOverTitle">本局结束</h2>
+          <p class="confirm-copy" id="gameOverMessage">差一点就更大了</p>
+          <div class="result-row">
+            <div>
+              <span>等级</span>
+              <div class="highest-item">
+                <img id="highestItemImage" alt="">
+              </div>
+            </div>
+            <div><span>得分</span><strong id="finalScore">0</strong></div>
+          </div>
+          <p class="new-record" id="newRecord" hidden>新纪录！</p>
+          <div class="confirm-actions game-over-actions">
+            <button class="small-button confirm-button" id="againButton" type="button" tabindex="-1">再合一次</button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="overlay"
+        id="restartConfirmOverlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="restartConfirmTitle"
+        hidden
+      >
+        <div class="overlay-card confirm-card">
+          <h2 id="restartConfirmTitle">重新开始？</h2>
+          <p class="confirm-copy">当前进度将会丢失</p>
+          <div class="confirm-actions">
+            <button class="small-button" id="restartCancelButton" type="button" tabindex="-1">取消</button>
+            <button class="small-button confirm-button" id="restartConfirmButton" type="button" tabindex="-1">重新开始</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="game-config.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
